@@ -1,0 +1,19 @@
+syntax = "proto3";
+package com.example.grpc;
+
+message HelloRequest{ // name of our request
+
+  string name = 1; // мы полю name присваиваем значение 1-тег. При запросе у нас ключ будет не "name", а 1, так как 1 занимает меньше места
+
+  repeated string hobbies = 2;   // repeated - список
+}
+
+message HelloResponse {
+  string greeting = 1;
+}
+
+service GreetingService { // RPC методы должны лежать в service
+  rpc greeting(HelloRequest) returns (stream HelloResponse); // серверу будет доступен HelloRequest, а клиенту HelloResponse
+}
+
+
